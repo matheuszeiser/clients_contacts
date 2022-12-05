@@ -1,5 +1,11 @@
 import {Router} from "express";
-import createClientController from "../../controllers/clients";
+import {
+    createClientController,
+    deleteClientController,
+    listClientsController,
+    updateClientController,
+} from "../../controllers/clients";
+import {ensureAuthenticationMiddleware} from "../../middlewares/ensureAuthenticationMiddleware";
 import validationMiddleware from "../../middlewares/validation.middleware";
 import {clientSchema} from "../../schemas/clients";
 
@@ -11,4 +17,9 @@ clientsRouter.post(
     createClientController
 );
 
+clientsRouter.patch("", ensureAuthenticationMiddleware, updateClientController);
+
+clientsRouter.get("", listClientsController);
+
+clientsRouter.delete("", deleteClientController);
 export default clientsRouter;

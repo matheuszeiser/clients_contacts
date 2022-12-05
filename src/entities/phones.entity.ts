@@ -7,8 +7,8 @@ export class Phone {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column()
-    number: number;
+    @Column({unique: true})
+    number: string;
 
     @ManyToOne(() => Client)
     client?: Client;

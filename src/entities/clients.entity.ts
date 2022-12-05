@@ -28,12 +28,12 @@ export class Client {
     @CreateDateColumn({type: "date"})
     date_joined: Date;
 
-    @OneToMany(() => Contacts, (contacts) => contacts.client)
+    @OneToMany(() => Contacts, (contacts) => contacts.client, {eager: true})
     contacts: Contacts[];
 
-    @OneToMany(() => Email, (email) => email.client)
-    email: Email[];
+    @OneToMany(() => Email, (email) => email.client, {eager: true})
+    email?: Email[];
 
-    @OneToMany(() => Phone, (phone) => phone.client)
-    phone: Phone[];
+    @OneToMany(() => Phone, (phone) => phone.client, {eager: true})
+    phone?: Phone[];
 }

@@ -1,4 +1,3 @@
-import e from "express";
 import {
     Column,
     Entity,
@@ -18,12 +17,12 @@ export class Contacts {
     @Column()
     name: string;
 
-    @ManyToOne(() => Client, {eager: true})
+    @ManyToOne(() => Client)
     client: Client;
 
-    @OneToMany(() => Email, (email) => email.contacts)
-    email: Email[];
+    @OneToMany(() => Email, (email) => email.contacts, {eager: true})
+    email?: Email[];
 
-    @OneToMany(() => Phone, (phone) => phone.contacts)
-    phone: Phone[];
+    @OneToMany(() => Phone, (phone) => phone.contacts, {eager: true})
+    phone?: Phone[];
 }
